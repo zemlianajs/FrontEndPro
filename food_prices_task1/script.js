@@ -16,28 +16,33 @@ let captionString = `Food prices ≠ <ВИВІД ПОТОЧНОГО ДНЯ>.<В�
     kiwiCountryPercent = 10;
 
     captionString = captionString.replace('≠', '-');
-    day = new Date().getDate();
+    
+    captionString = captionString.replace('<ВИВІД ПОТОЧНОГО ДНЯ>', new Date().getDate());
+    
     month = new Date().getMonth();
-    month++; 
-    year = new Date().getFullYear();
+    month++;     
+    captionString = captionString.replace('<ВИВІД ПОТОЧНОГО МІСЯЦЯ>', month);
 
-    final = 'Final price for '
-    equals = ' = '
-    currency = ' UAH '
+    captionString = captionString.replace('<ВИВІД ПОТОЧНОГО РОКУ>',  year = new Date().getFullYear());
+
+    resultStr = 'Final price for ';
+    equals = ' = ';
+    currency = ' UAH ';
+    finalStr = 'Final price for all products';
 
     calculateApplePrice = Number(((applePrice - (applePrice * appleSalePercent / 100)) * appleCount).toFixed(2));
-    finalApple = final + appleCount + ' ' + apple + equals + (calculateApplePrice).toFixed() + currency;
+    finalApple = resultStr + appleCount + ' ' + apple + equals + (calculateApplePrice).toFixed() + currency;
    
     calculateOrangePrice = Number(((orangePrice - (orangePrice * orangeSalePercent / 100)) * orangeCount).toFixed(2));
-    finalOrange = final + orangeCount + ' ' + orange + equals + (calculateOrangePrice).toFixed() + currency;  
+    finalOrange = resultStr + orangeCount + ' ' + orange + equals + (calculateOrangePrice).toFixed() + currency;  
 
     calculateKiwiPrice = Number(((kiwiPrice + (kiwiPrice * kiwiCountryPercent / 100)) * kiwiCount).toFixed(2));
-    finalKiwi = final + kiwiCount + ' ' + kiwi + equals + (calculateKiwiPrice).toFixed() + currency;
+    finalKiwi = resultStr + kiwiCount + ' ' + kiwi + equals + (calculateKiwiPrice).toFixed() + currency;
 
     calculateFinalPrice = calculateApplePrice + calculateOrangePrice + calculateKiwiPrice;
-    allFinalPrice = 'Final price for all products' + equals + calculateFinalPrice;
+    allFinalPrice = finalStr + equals + calculateFinalPrice;
 
-    captionString = captionString.slice(0, 14) + day + '.' + month + '.' + year 
+    captionString = captionString.slice(0)
                     + '\n' 
                     + '\n' + finalApple 
                     + '\n' + finalOrange 
