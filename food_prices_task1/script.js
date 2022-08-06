@@ -15,30 +15,31 @@ let captionString = `Food prices ≠ <ВИВІД ПОТОЧНОГО ДНЯ>.<В�
     kiwiCount = 10,
     kiwiCountryPercent = 10;;
     
-    month = new Date().getMonth();
-    month++;   
+let date = new Date();
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
 
-    captionString = captionString.replace('≠', '-').replace('<ВИВІД ПОТОЧНОГО ДНЯ>', new Date().getDate()).replace('<ВИВІД ПОТОЧНОГО МІСЯЦЯ>', month)
-                    .replace('<ВИВІД ПОТОЧНОГО РОКУ>',  year = new Date().getFullYear());
+    captionString = `Food prices ≠ ${day}.${month}.${year}`.replaceAll('≠', '-');
 
-    resultStr = `Final price for`;
-    equals = `=`;
-    currency = `UAH`;
-    finalStr = `Final price for all products`;
+let resultStr = `Final price for`;
+let equals = `=`;
+let currency = `UAH`;
+let finalStr = `Final price for all products`;
 
-    calculateApplePrice = +(((applePrice - (applePrice * appleSalePercent / 100)) * appleCount).toFixed(2));
-    finalApple = `${resultStr} ${appleCount} ${apple} ${equals} ${(calculateApplePrice).toFixed()} ${currency}`;
+let calculateApplePrice = +(((applePrice - (applePrice * appleSalePercent / 100)) * appleCount).toFixed(2));
+let finalApple = `${resultStr} ${appleCount} ${apple} ${equals} ${(calculateApplePrice).toFixed()} ${currency}`;
 
-    calculateOrangePrice = +(((orangePrice - (orangePrice * orangeSalePercent / 100)) * orangeCount).toFixed(2));
-    finalOrange = `${resultStr} ${orangeCount} ${orange} ${equals} ${(calculateOrangePrice).toFixed()} ${currency}`;
+let calculateOrangePrice = +(((orangePrice - (orangePrice * orangeSalePercent / 100)) * orangeCount).toFixed(2));
+let finalOrange = `${resultStr} ${orangeCount} ${orange} ${equals} ${(calculateOrangePrice).toFixed()} ${currency}`;
 
-    calculateKiwiPrice = +(((kiwiPrice + (kiwiPrice * kiwiCountryPercent / 100)) * kiwiCount).toFixed(2));
-    finalKiwi = `${resultStr} ${kiwiCount} ${kiwi} ${equals} ${(calculateKiwiPrice).toFixed()} ${currency}`;
+let calculateKiwiPrice = +(((kiwiPrice + (kiwiPrice * kiwiCountryPercent / 100)) * kiwiCount).toFixed(2));
+let finalKiwi = `${resultStr} ${kiwiCount} ${kiwi} ${equals} ${(calculateKiwiPrice).toFixed()} ${currency}`;
 
-    calculateFinalPrice = calculateApplePrice + calculateOrangePrice + calculateKiwiPrice;
+let calculateFinalPrice = calculateApplePrice + calculateOrangePrice + calculateKiwiPrice;
     allFinalPrice = finalStr + equals + calculateFinalPrice;
 
-    captionString = `${captionString.slice(0)} 
+    captionString = `${captionString.slice(0)}
                     
 ${finalApple}
 ${finalOrange}
