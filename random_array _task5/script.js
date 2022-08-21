@@ -35,7 +35,7 @@ do{
 maxValuetArr = parseInt(maxValuetArr);
 
 for(let i=0; i<arr.length; i++){
-    arr[i] = Math.round(Math.random() * (maxValuetArr - minValueArr + 1) + minValueArr);
+    arr[i] = Math.floor(Math.random() * (maxValuetArr - minValueArr + 1) + minValueArr);
 }
 console.log(arr);
 
