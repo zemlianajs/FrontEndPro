@@ -1,12 +1,11 @@
-const countOfWords = 3;
-
-let words = ``,
-    typeOfTransformation,
+let typeOfTransformation,
     sentance = ``;
 
 let ImportantWords = confirm(`Tell me three most important words 💚`);
 
 if(ImportantWords){
+    const countOfWords = 3;
+    let words = ``;
     for(let i=1; i<=countOfWords; i++){
         do{
             words = prompt(`Enter word #${i}`);

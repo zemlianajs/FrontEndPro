@@ -12,25 +12,27 @@ let arr = [],
 
 do{
     lengthOfArr = prompt(`Enter the length of array from ${minLengthOfArr} to ${maxLengthOfArr}`);
-    lengthOfArr = Math.abs(lengthOfArr);
-    lengthOfArr = Math.round(lengthOfArr);
+    lengthOfArr = Math.round(Math.abs(lengthOfArr));
 } while (!lengthOfArr || lengthOfArr<minLengthOfArr || lengthOfArr>maxLengthOfArr);
 
 arr.length = lengthOfArr;
 
 do{
     minValueArr = prompt(`Enter the minimum value of random array element from ${minValueArrFrom} to ${minValueArrTo}`);
-    if(isNaN(minValueArr)) minValueArr = false;
     if(typeof minValueArr === "number") minValueArr = Math.round(minValueArr);  
-} while (!minValueArr || minValueArr<minValueArrFrom || minValueArr>minValueArrTo);
+} while (!minValueArr || isNaN(minValueArr) || minValueArr<minValueArrFrom || minValueArr>minValueArrTo);
+
+// do{
+//     minValueArr = prompt(`Enter the minimum value of random array element from ${minValueArrFrom} to ${minValueArrTo}`);
+//     if(minValueArr !== null) minValueArr = Math.round(minValueArr);  
+// } while (minValueArr === null || isNaN(minValueArr) || minValueArr<minValueArrFrom || minValueArr>minValueArrTo);
 
 minValueArr = parseInt(minValueArr);
 
 do{
     maxValuetArr = prompt(`Enter the maximum value of random array element up to ${maxValuetArrTo}, but not less than the ${minValueArr}`);
-    if(isNaN(maxValuetArr)) maxValuetArr = false;
     if(typeof maxValuetArr === "number") maxValuetArr = Math.round(maxValuetArr);
-} while (!maxValuetArr || maxValuetArr<=minValueArr || maxValuetArr>maxValuetArrTo)
+} while (!maxValuetArr || isNaN(maxValuetArr) || maxValuetArr<=minValueArr || maxValuetArr>maxValuetArrTo)
 
 maxValuetArr = parseInt(maxValuetArr);
 
