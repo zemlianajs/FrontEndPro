@@ -11,6 +11,12 @@ const sports = [
     ['rowboat','🚣'],
     ['bicyclist','🚴‍']
     ];
+function consoleArr (array){
+    for(let i=0; i<array.length; i++){
+    array[i] = array[i].join(`: `);
+    console.log(array[i]);
+};
+}
 
 let summer_sports = sports.slice(5);
 let winter_sports = sports.slice(0, 5);
@@ -19,19 +25,8 @@ let fruits = [];
 fruits = fruits.concat(summer_sports.splice(2, 2), winter_sports.splice(2, 1));
 
 console.log(`***Winter sports***`);
-for(let i=0; i<winter_sports.length; i++){
-    winter_sports[i] = winter_sports[i].join(`: `);
-    console.log(winter_sports[i]);
-};
-
+array = consoleArr (winter_sports);
 console.log(`***Summer sports***`);
-for(let i=0; i<summer_sports.length; i++){
-    summer_sports[i] = summer_sports[i].join(`: `);
-    console.log(summer_sports[i]);
-};
-
+array = consoleArr (summer_sports);
 console.log(`***Fruits***`);
-for(let i=0; i<fruits.length; i++){
-    fruits[i] = fruits[i].join(`: `);
-    console.log(fruits[i]);
-};
+array = consoleArr (fruits);
