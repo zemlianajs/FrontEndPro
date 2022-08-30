@@ -14,22 +14,21 @@ const food = [
 	['🍌','banana',7]
 ];
 
-function getInfo(tittle, array){
-    let table = [];
-    for(let tr = 0; tr < array.length; tr++){
-        let innerArray = array[tr],
-            icon = innerArray[0],
-            WhoWhat = innerArray[1],
-            NameOrPrice = innerArray[2],
-            column = [];        
-        column.push(`<td>${icon}</td><td>${WhoWhat}</td><td>${NameOrPrice}</td>`);
-        table.push(`<tr>${column.join(``)}</tr>`)
+function getInfo(array, tittleOfArr){
+    let table = [],
+        tittle = [],
+        tbody = [];
+    tittle.push(`<caption>${tittleOfArr} info</caption>`); 
+    for(let i = 0; i < array.length; i++){
+        let innerArray = array[i],
+            column = [];
+        column.push(`<td>${innerArray[0]}</td><td>${innerArray[1]}</td><td>${innerArray[2]}</td>`);
+        tbody.push(`<tr>${column.join(``)}</tr>`)
     }
-    return document.write(`<table>
-        <caption>${tittle}</caption>
-        <tbody>${table}</tbody>
-        </table>`)
+    table.push(`<table>${tittle.join(``)} ${tbody.join(``)} </table>`)
+    return document.write(`${table.join(``)}`)
 }
       
-getInfo (`Animals info`, animals);
-getInfo (`Food info`, food);
+getInfo (animals, `Animals`);
+getInfo (food, `Food`);
+
