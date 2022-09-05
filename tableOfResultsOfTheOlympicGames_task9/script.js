@@ -87,7 +87,6 @@ const flags = [
     ['ml','🇲🇱']
 ];
 
-
 function getTableOfWinnersSports() {
     TRs = [];
     for(let tr = 0; tr < sports.length; tr++){
@@ -106,6 +105,73 @@ function getTableOfWinnersSports() {
     
     return `<table><td></td>${TRs.join(``)}</table>`
 }
+arrayOfResults = [];
 
+for(let i = 0; i<winners.length; i++){
+    arrayOfResults.push(winners[i])
+} 
+
+
+function getResultOfWinners ( kindOfSports, getColorOfContinent ){   ///['figure skating','🥈','fr'], => ['⛸','🥈','fr', '🔵']
+  
+    for(let i = 0; i<arrayOfResults.length; i++){
+        
+        if (kindOfSports === arrayOfResults[i][0]){
+            arrayOfResults[i].unshift(`${getKindOfSports()}`)
+
+        }
+        console.log(arrayOfResults[i])
+    }
+}
+
+
+function getKindOfSports (kindOfSports) {
+    let sportsIcon;
+    for(let i=0; i<sports.length; i++){
+    if (kindOfSports === sports[i][1]){
+        sportsIcon = sports[i][0];
+        return sportsIcon;
+    }
+    }
+}
+console.log(getKindOfSports ('figure skating'))
+
+function getColorOfContinent ( ContinentOfCountry ) { 
+    let colorOfContinent;
+        switch (ContinentOfCountry) {
+            case 'Europe':
+                colorOfContinent = '🔵'
+                break;
+            case 'Africa':
+                colorOfContinent = '⚫'
+                break;
+            case 'America':
+                colorOfContinent = '🔴'
+                break;
+            case 'Asia':
+                colorOfContinent = '🟡'
+                break;
+            case 'Oceania':
+                colorOfContinent = '🟢'
+                break;
+        }
+    return colorOfContinent;
+}
+
+function getContinentOfCountry (country) {
+    for (let i = 0; i < continents.length; i++) {
+        if (continents[i][0] === country) {
+            return continents[i][1]
+        }
+    }
+}
+
+function getFlagOfCountry(country) {
+    for (let i = 0; i < flags.length; i++) {
+        if (flags[i][0] === country) {
+            return flags[i][1];
+        }
+    }
+}
 
 document.write(getTableOfWinnersSports())
