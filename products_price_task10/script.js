@@ -14,14 +14,16 @@ function getPrice( products, seasonFunc ){
         sumOfProducts += products[i][1]
     }
 
-    return typeof seasonFunc === `function` ? seasonFunc (sumOfProducts) : sumOfProducts;
+    return typeof seasonFunc === `function` ? seasonFunc (sumOfProducts) : sumOfProducts.toFixed(2);
 }
 function summerValue(value){
-	return value*0.8;
+	let result = value*0.8;
+	return result.toFixed(2);
 }
 
 function winterValue(value){
-	return value*2;
+	let result = value*2;
+	return result.toFixed(2);
 }
 
 console.log(`Sum of products ${getPrice( products )}`);
