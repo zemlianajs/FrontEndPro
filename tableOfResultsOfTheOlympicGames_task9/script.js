@@ -112,13 +112,13 @@ function getResultOfWinners ( sportsIcon, colorOfContinent ){
     let resultOfWinners = [];
 
     for (let i=0; i<winners.length; i++){
-        winnersKindOfSports = winners[i][0];
-        gong = winners[i][1];
+        let winnersKindOfSports = winners[i][0];
+        let gong = winners[i][1];
         if (winnersKindOfSports === kindOfSports &&  continentOfCountry === getContinentOfCountry (winners[i][2])){
-            resultOfWinners.push(getFlagOfCountry(winners[i][2]), gong)
+            resultOfWinners.push(getFlagOfCountry(winners[i][2]), `-`, gong)
         }
     }
-    return resultOfWinners.join(`-`)    
+    return resultOfWinners.join(` `)    
 }
 
 function getKindOfSports (sportsIcon) {
