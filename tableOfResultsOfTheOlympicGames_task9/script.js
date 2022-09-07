@@ -93,7 +93,7 @@ function getTableOfWinnersSports() {
         
         TDs = [];
         for(let td = 0; td < olympic.length; td++){
-        TDs.push(`<td></td>`)
+        TDs.push(`<td>${getResultOfWinners ( sports[tr][0], olympic[td] )}</td>`)
             
         if(tr===0){
             TRs.push(`<td>${olympic[td]}</td>`);
@@ -105,57 +105,30 @@ function getTableOfWinnersSports() {
     
     return `<table><td></td>${TRs.join(``)}</table>`
 }
-arrayOfResults = [];
 
-for(let i = 0; i<winners.length; i++){
-    arrayOfResults.push(winners[i])
-} 
+function getResultOfWinners ( sportsIcon, colorOfContinent ){   
+    let kindOfSports = getKindOfSports (sportsIcon);
+    let continentOfCountry = getColorOfContinent ( colorOfContinent );    
+    let resultOfWinners = [];
 
-
-function getResultOfWinners ( kindOfSports, getColorOfContinent ){   ///['figure skating','🥈','fr'], => ['⛸','🥈','fr', '🔵']
-  
-    for(let i = 0; i<arrayOfResults.length; i++){
-        
-        if (kindOfSports === arrayOfResults[i][0]){
-            arrayOfResults[i].unshift(`${getKindOfSports()}`)
-
+    for (let i=0; i<winners.length; i++){
+        winnersKindOfSports = winners[i][0];
+        gong = winners[i][1];
+        if (winnersKindOfSports === kindOfSports &&  continentOfCountry === getContinentOfCountry (winners[i][2])){
+            resultOfWinners.push(getFlagOfCountry(winners[i][2]), gong)
         }
-        console.log(arrayOfResults[i])
     }
+    return resultOfWinners.join(`-`)    
 }
 
-
-function getKindOfSports (kindOfSports) {
-    let sportsIcon;
+function getKindOfSports (sportsIcon) {
+    let kindOfSports;
     for(let i=0; i<sports.length; i++){
-    if (kindOfSports === sports[i][1]){
-        sportsIcon = sports[i][0];
-        return sportsIcon;
+    if (sportsIcon === sports[i][0]){
+        kindOfSports = sports[i][1];
+        return kindOfSports;
     }
     }
-}
-console.log(getKindOfSports ('figure skating'))
-
-function getColorOfContinent ( ContinentOfCountry ) { 
-    let colorOfContinent;
-        switch (ContinentOfCountry) {
-            case 'Europe':
-                colorOfContinent = '🔵'
-                break;
-            case 'Africa':
-                colorOfContinent = '⚫'
-                break;
-            case 'America':
-                colorOfContinent = '🔴'
-                break;
-            case 'Asia':
-                colorOfContinent = '🟡'
-                break;
-            case 'Oceania':
-                colorOfContinent = '🟢'
-                break;
-        }
-    return colorOfContinent;
 }
 
 function getContinentOfCountry (country) {
@@ -164,6 +137,29 @@ function getContinentOfCountry (country) {
             return continents[i][1]
         }
     }
+}
+
+function getColorOfContinent ( colorOfContinent ) { 
+    let continentOfCountry;
+        switch (colorOfContinent) {
+        case '🔵':
+            continentOfCountry = 'Europe' 
+            break;
+        case '⚫':
+            continentOfCountry = 'Africa'
+            break;
+        case '🔴':
+            continentOfCountry = 'America'
+            break;
+        case '🟡':
+            continentOfCountry = 'Asia'
+            break;
+        case '🟢':
+            continentOfCountry = 'Oceania'
+            break;
+    }
+
+    return continentOfCountry;
 }
 
 function getFlagOfCountry(country) {
