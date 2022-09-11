@@ -115,7 +115,7 @@ function getResultOfWinners ( sportsIcon, colorOfContinent ){
         let winnersKindOfSports = winners[i][0];
         let gong = winners[i][1];
         if (winnersKindOfSports === kindOfSports &&  continentOfCountry === getContinentOfCountry (winners[i][2])){
-            resultOfWinners.push(getFlagOfCountry(winners[i][2]), `-`, gong)
+            resultOfWinners.push(`${getFlagOfCountry(winners[i][2])} - ${gong}`)
         }
     }
     return resultOfWinners.join(` `)    
@@ -171,3 +171,103 @@ function getFlagOfCountry(country) {
 }
 
 document.write(getTableOfWinnersSports())
+
+// function renderThead(){
+//     let THs = [];
+
+//     for(let i=0; i<olympic.length; i++){
+//         THs.push(`<th>${olympic[i]}</th>`);
+//     }
+    
+//     return `<thead>
+//         <tr>
+//             <th></th>
+//             ${THs.join(``)}
+//         </tr>
+//     </thead>`;
+// }
+
+// function getWinnersBySport(sport){
+//     let currentWinners = [];
+//     for(let i=0; i<winners.length; i++){
+//         if(winners[i][0] === sport)
+//             currentWinners.push(winners[i]);
+//     }
+//     return currentWinners;
+// }
+
+// function getContinentByCountry(coutry){
+//     for(let i=0; i<continents.length; i++){
+//         if(continents[i][0] === coutry)
+//             return continents[i][1];
+//     }
+// }
+
+// function getFlagByCountry(coutry){
+//     for(let i=0; i<flags.length; i++){
+//         if(flags[i][0] === coutry)
+//             return flags[i][1];
+//     }
+// }
+
+// function renderTbody(){
+//     let TRs = [];
+
+//     for(let i=0; i<sports.length; i++){
+//         let Asia = [], America = [], Europe = [], Oceania = [], Africa = [];
+
+//         let sportIcon = sports[i][0],
+//             sportName = sports[i][1];
+
+//         let currentWinners = getWinnersBySport(sportName);
+//         console.log(currentWinners);
+
+//         let renderedWinners = [];
+//         for(let i=0; i<currentWinners.length; i++){
+//             let countryAbbr = currentWinners[i][2],
+//                 countryMedal = currentWinners[i][1],
+//                 currentContinent = getContinentByCountry(countryAbbr),
+//                 countryFlag = getFlagByCountry(countryAbbr);
+
+//             let rendered = `<div>${countryFlag} – ${countryMedal}</div>`;
+
+//             switch(currentContinent){
+//                 case `Asia`:
+//                     Asia.push(rendered);
+//                     break;
+//                 case `America`:
+//                     America.push(rendered);
+//                     break;
+//                 case `Europe`:
+//                     Europe.push(rendered);
+//                     break;
+//                 case `Oceania`:
+//                     Oceania.push(rendered);
+//                     break;
+//                 case `Africa`:
+//                     Africa.push(rendered);
+//                     break;
+//             }
+//         }
+
+//         TRs.push(`<tr>
+//             <td>${sportIcon}</td>
+//             <td>${Europe.join(``)}</td>
+//             <td>${Africa.join(``)}</td>
+//             <td>${America.join(``)}</td>
+//             <td>${Asia.join(``)}</td>
+//             <td>${Oceania.join(``)}</td>
+//         </tr>`);
+//     }
+
+//     return `<tbody>${TRs.join(``)}</tbody>`
+// }
+
+// function renderTable(){
+//     return `<table>
+//         ${renderThead()}
+//         ${renderTbody()}
+//     </table>`
+// }
+
+// document.write(renderTable());
