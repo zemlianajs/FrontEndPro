@@ -11,15 +11,29 @@ const obj = {
     }
 };
 
-function convert(object) {
-    for (let key in object) {
-      (typeof object[key] === 'object')
-        ? (convert(object[key]), delete object[key])
-        : obj[key] = object[key]
+// function convert(object) {
+//     for (let key in object) {
+//       (typeof object[key] === 'object')
+//         ? (convert(object[key]), delete object[key])
+//         : obj[key] = object[key]
+//     }
+//     return object
+// }
+
+
+
+
+const convert = list => {
+    let newObj = {};
+
+    for (let key in list) {
+        if(typeof list[key] === 'object'){
+            Object.assign(newObj, convert(list[key]))
+        } else{
+            newObj[key] = list[key];
+        }
     }
-    return object
+    return newObj;
 }
 
 console.log(convert(obj))
-
-
