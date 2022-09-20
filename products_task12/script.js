@@ -62,8 +62,16 @@ const makePrototype = (arr, objectProto) => {
     return newArrPrototype
 }
 
-const renderList = arr => arr.forEach(item => document.write(`<ul><li>${item.getInfo()}</li></ul>`))
+//const renderList = arr => arr.forEach(item => document.write(`<ul><li>${item.getInfo()}</li></ul>`))
 
-renderList((makePrototype(vegetables, Vegetable)));
-renderList((makePrototype(fruits, Fruit)));
+const renderList = arr => {
+    const arrLis = arr
+        .map(item =>`<li>${item.getInfo()}</li>`)
+        .join('');
+
+    return `<ul>${arrLis}</ul>`;
+}
+
+document.write( renderList((makePrototype(vegetables, Vegetable))));
+document.write( renderList((makePrototype(fruits, Fruit))));
     
