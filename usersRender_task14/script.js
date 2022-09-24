@@ -4,9 +4,6 @@ const gradation = {
 	85: "very-good",
 	100: "excellent"
 };
-// for (let key in gradation){
-// 	console.log(key)
-// }
 
 const users = [
 	{
@@ -119,19 +116,20 @@ class User{
 				<p>${this.role}</p>
 			</div>
 		</div>`
-
-		let divCourse;
-		if (this.courses){
-			divCourse = this.renderCourses();
-		}
-
-		return `<div class="user">${divInfo} ${divCourse}</div>`
+		
+		return `<div class="user">${divInfo} ${this.courses ? this.renderCourses() : ``} </div>`
 	}
 
     renderCourses(){
-		return `<div class="user__courses">
-		<p class="user__courses--course ${this.role} ">Front-end Pro <span class="satisfactory">satisfactory</span></p>
-	</div>`
+		let boxCourses = this.courses
+			.map(course => {
+				
+				return `<p class="user__courses--course ${this.role}">${course.title}
+					<span class="${getGradation(course.mark)}">${getGradation(course.mark)}</span></p>`
+			})
+			.join(``)
+
+		return `<div class="user__courses">${boxCourses}</div>`
 	}
 }
 
@@ -141,16 +139,55 @@ class Student extends User{
     }
 }
 
-class Lector extends User{
-    constructor(obj){
-        super(obj);
-    }
-}
-
 class Admin extends User{
     constructor(obj){
         super(obj);
     }
+
+	renderCourses(){
+		let boxCourses = this.courses
+				.map(course => {
+					return `<div class="user__courses--course ${this.role}">
+	 					<p>Title: <b>${course.title}</b></p>
+	 					<p>Admin's score: <span class="${getGradation(course.score)}">${getGradation(course.score)}</span></p>
+	 					<p>Lector: <b>${course.lector}</b></p>
+	 					</div>`
+				})
+				.join(``);
+
+		return `<div class="user__courses ${this.role}--info">${boxCourses}</div>`
+	}
+}
+
+class Lector extends User{
+    constructor(obj){
+        super(obj);
+    }
+
+	renderCourses(){
+		let	boxCourses = this.courses
+			.map(course => {
+				return `<div class="user__courses--course ${this.role}">
+						<p>Title: <b>${course.title}</b></p>
+						<p>Lector's score: <span class="${getGradation(course.score)}">${getGradation(course.score)}</span></p>
+						<p>Average student's score: <span class="${getGradation(course.studentsScore)}">${getGradation(course.studentsScore)}</span></p>
+						</div>`
+				})
+				.join(``);
+
+		return `<div class="user__courses admin--info">${boxCourses}</div>`
+	 }
+}
+
+const getGradation = courseMark => {
+	let rangeOfGradation;
+	for (key in gradation){
+		if(courseMark <= key){
+			rangeOfGradation = gradation[key];
+			break;
+		}
+	}
+	return rangeOfGradation		
 }
 
 const ROLE_TYPES = {
@@ -159,13 +196,11 @@ const ROLE_TYPES = {
     lector: user => new Lector(user)
 }
 
-let objectsOfUsers = users
+let cardsOfUsers = users
     .map(user => ROLE_TYPES[user.role] ? ROLE_TYPES[user.role](user) : new User(user))
 	.map(user => user.render())
 	.join(``);
 
-//console.log(objectsOfUsers)
 
-document.write(`<div class="users">${objectsOfUsers}</div>`)
-
+document.write(`<div class="users">${cardsOfUsers}</div>`)
 
