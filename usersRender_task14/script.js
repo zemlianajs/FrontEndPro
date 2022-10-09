@@ -196,6 +196,8 @@ const ROLE_TYPES = {
     lector: user => new Lector(user)
 }
 
+
+
 let cardsOfUsers = users
     .map(user => ROLE_TYPES[user.role] ? ROLE_TYPES[user.role](user) : new User(user))
 	.map(user => user.render())
