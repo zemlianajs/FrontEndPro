@@ -1,0 +1,17 @@
+#element {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+button {
+    max-width: 200px;
+}

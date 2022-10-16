@@ -125,7 +125,7 @@ class Coffee{
     constructor(obj){
         Object.assign(this, obj)
     }
-   // ${this.divIngredients()}
+
     makeCoffee(){
         return `<div class="cup">
                 <div class="coffee">
@@ -133,20 +133,15 @@ class Coffee{
                 </div>
                 <p class="${this.title}">${this.title}</p>
             </div>`
-        //return this.divIngredients()
+        
     }
     divIngredients(){
-        let ingredients = {};
-        Object.assign(ingredients, this.ingredients);
-        let nameOfIngredient;
-        let valueOfIngridient;
-        for(const [key, value] of Object.entries(ingredients)){
-            nameOfIngredient = key;
-            valueOfIngridient = value
+        let ingredient = [];
+        for(let key in this.ingredients){
+            ingredient.push( `<p style="height: ${this.ingredients[key]}%" class="ingredient ${key.replaceAll(` `,`__`)}">${key}</p>` )
         }
-        return `<div class="coffee__ingredients">
-            <p style="height: ${valueOfIngridient}%" class="ingredient ${nameOfIngredient}">
-                ${nameOfIngredient}</p>${nameOfIngredient}</div>`
+       
+         return `<div class="coffee__ingredients">${ingredient.join(``)}</div>`  
     }
 }
 
@@ -154,11 +149,22 @@ class Espresso extends Coffee{
     constructor(obj){
         super(obj);
     }
+
+    makeCoffee(){
+        let CoffeeResult = super.makeCoffee();
+
+        return CoffeeResult.replaceAll(`class="coffee"`, `class="coffee coffee--espresso"`)
+    }
 }
 
 class EspressoMilk extends Coffee{
     constructor(obj){
         super(obj);
+    }
+    makeCoffee(){
+        let CoffeeResult = super.makeCoffee();
+
+        return CoffeeResult.replaceAll(`class="coffee"`, `class="coffee coffee--espressoMilk"`)
     }
 }
 
@@ -166,11 +172,21 @@ class Alcoholic extends Coffee{
     constructor(obj){
         super(obj);
     }
+    makeCoffee(){
+        let CoffeeResult = super.makeCoffee();
+
+        return CoffeeResult.replaceAll(`class="coffee"`, `class="coffee coffee--alcoholic"`)
+    }
 }
 
 class Dessert extends Coffee{
     constructor(obj){
         super(obj);
+    }
+    makeCoffee(){
+        let CoffeeResult = super.makeCoffee();
+
+        return CoffeeResult.replaceAll(`class="coffee"`, `class="coffee coffee--dessert"`)
     }
 }
 
@@ -180,15 +196,6 @@ const CLASS_COFFEE = {
     Alcoholic: type => new Alcoholic(type),
     Dessert: type => new Dessert(type)
 }
-
-// let renderCoffee = Object.keys(COFFEE_TYPES)
-//     .map(key => COFFEE_TYPES[key]
-//        .map(type => CLASS_COFFEE[key] ? CLASS_COFFEE[key](type) : new Coffee(type)))
-//     .map(coffee => coffee
-//         .map(objCoffee => objCoffee.makeCoffee())
-//         .join(``)
-//         )
-    
 
 
 let renderCoffee = Object.entries(COFFEE_TYPES)
