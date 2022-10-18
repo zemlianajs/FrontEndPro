@@ -131,14 +131,15 @@ class Coffee{
                 <div class="coffee">
                 ${this.divIngredients()}
                 </div>
-                <p class="${this.title}">${this.title}</p>
+                <p class="coffee__title">${this.title}</p>
             </div>`
         
     }
     divIngredients(){
         let ingredient = [];
         for(let key in this.ingredients){
-            ingredient.push( `<p style="height: ${this.ingredients[key]}%" class="ingredient ${key.replaceAll(` `,`__`)}">${key}</p>` )
+            ingredient.push( `<p style="height: ${this.ingredients[key]}%" 
+                class="ingredient ${key.replaceAll(` `,`__`)}">${key}</p>` )
         }
        
          return `<div class="coffee__ingredients">${ingredient.join(``)}</div>`  
