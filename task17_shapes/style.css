@@ -1,5 +1,6 @@
 #element {
     margin-bottom: 20px;
+    height: 150px;
 }
 
 form {
@@ -14,4 +15,17 @@ label {
 
 button {
     max-width: 200px;
+}
+
+.square {
+    width: 150px;
+}
+
+.rectangle {
+    width: 300px;
+}
+
+.circle {
+    width: 150px;
+    border-radius: 50%;
 }
