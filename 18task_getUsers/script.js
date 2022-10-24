@@ -1,30 +1,23 @@
-let dataOfChildren  = [];
+dataOfChildren = [];
 
-const getFile = file => {
-    const request = new XMLHttpRequest();
-    request.open(`GET`, file);
-    request.send();
+const getFile = (file, callbackFunc) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(`GET`, file);
+    xhr.send();
 
-    request.addEventListener(`readystatechange`, () => {
-        if(request.readyState === 4 && request.status===200 && request.status<400){
-            receivedData(JSON.parse(request.response));
+    xhr.addEventListener(`readystatechange`, () => {
+        if(xhr.readyState === 4 && xhr.status===200 && xhr.status<400){
+            if (typeof callbackFunc === `function`) callbackFunc(JSON.parse(xhr.response));
         }
     })
     
 }
+const receivedData = obj => Object
+    .values(obj)
+    .forEach(item => item
+        .forEach(item => dataOfChildren.push(item)));
 
-let data = getFile(`./data.json`);
-let data2 = getFile(`./data2.json`);
+console.log(dataOfChildren);
 
-const receivedData = obj => {
-    let receivedArr = [];
-    receivedArr = (Object.values(obj))
-            .forEach(item => item
-                .forEach(item => dataOfChildren.push(item)));
-}
-
-console.log(dataOfChildren)  
-
-
-
-
+getFile(`./data.json`, receivedData);
+getFile(`./data2.json`, receivedData);
