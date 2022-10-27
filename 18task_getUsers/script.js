@@ -12,12 +12,16 @@ const getFile = (file, callbackFunc) => {
     })
     
 }
-const receivedData = obj => Object
-    .values(obj)
-    .forEach(item => item
-        .forEach(item => dataOfChildren.push(item)));
+// const receivedData = obj => Object
+//     .values(obj)
+//     .forEach(item => item
+//         .forEach(item => dataOfChildren.push(item)));
+
+const receivedData = obj => dataOfChildren.push(...obj.children);
 
 console.log(dataOfChildren);
 
 getFile(`./data.json`, receivedData);
 getFile(`./data2.json`, receivedData);
+
+
